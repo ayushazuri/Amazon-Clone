@@ -1,0 +1,16 @@
+1) Nav bar => 
+    i) Used Material UI for icons and flex box for styling
+    ii) Navbar has position sticky
+
+
+2) Home Body => 
+    i) Background body has some important css added to it, to make it look good like gradient via mask-image and margin bottom is -150px so that the rows start inside of the background image, rather than starting after the background image
+    ii) Cards are responsive, ie, the Product component, you can add as many Products as you want, the cards will adjust accordingly and the width will change.
+
+3) Checkout Page => 
+    i) You add products to the basket or cart, and those products with be shown here in the checkout page. The checkout page has two parts, first one shows the products and the ad, and the second one shows the subtotal amount that needs to be paid.
+
+4) Data Layer( using useReducer context API/ Redux) => 
+    i) Making a data layer which will store all the values. It will basically store the products, when we add it to the basket and then display it in the checkout page. (Files related to useReducer/Context API are State Provider.js, reducer.js and some modifcation in the index.js)
+    ii)A function is added to the onclick of the button, Add to basket on home page, which dispatches an action of type "ADD_TO_BASKET" and saves/updates the state, ie, the basket array that is present inside of the state, and stores the required data like id, title, price etc in it.
+    ii) Data has been saved in state, and it can be used wherever needed by just using state, thereby getting the total number of orders in the cart and all the orders that have been added to the basket.
