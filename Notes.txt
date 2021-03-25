@@ -7,10 +7,34 @@
     i) Background body has some important css added to it, to make it look good like gradient via mask-image and margin bottom is -150px so that the rows start inside of the background image, rather than starting after the background image
     ii) Cards are responsive, ie, the Product component, you can add as many Products as you want, the cards will adjust accordingly and the width will change.
 
-3) Checkout Page => 
-    i) You add products to the basket or cart, and those products with be shown here in the checkout page. The checkout page has two parts, first one shows the products and the ad, and the second one shows the subtotal amount that needs to be paid.
-
 4) Data Layer( using useReducer context API/ Redux) => 
     i) Making a data layer which will store all the values. It will basically store the products, when we add it to the basket and then display it in the checkout page. (Files related to useReducer/Context API are State Provider.js, reducer.js and some modifcation in the index.js)
     ii)A function is added to the onclick of the button, Add to basket on home page, which dispatches an action of type "ADD_TO_BASKET" and saves/updates the state, ie, the basket array that is present inside of the state, and stores the required data like id, title, price etc in it.
     ii) Data has been saved in state, and it can be used wherever needed by just using state, thereby getting the total number of orders in the cart and all the orders that have been added to the basket.
+
+3) Checkout Page => 
+    i) You add products to the basket or cart, and those products with be shown here in the checkout page. The checkout page has two parts, first one shows the products and the ad, and the second one shows the subtotal amount that needs to be paid.
+    ii) Right side shows the total amount to be paid and the number of items. Total amount can be extracted by the length of the basket that is saved in the data layer or context api. And the to get the total amount, I have used a reduce function of array, so it iterates through the basket, and adds all the item's price to the amount, starting from zero and return the total amount. (reduce function of array basically reduces the whole array to a single value according to the function given in it).
+    iii) For the items in the cart, a card has been made, which displays the items present in the basket/data layer (after adding them in the cart on the home page). A CheckoutProduct has been made for that and in the checkout page, a map iterates through the basket, and displays all the cards.
+    iv) For Remove from basket functionality, a dispatch is sent whenever the button is clicked, which sends the type of action, ie, REMPOVE_FROM_BASKET, and the id of the basket. Now in the reduce.js a case is made to catch this particular action. If we just use filter function to check if the id of the product to be removed matches with the items present in the basket, it will remove all the repeated items and we dont want that. So to it properly, we first use findIndex function on basket array which is present in data layer/ context api and find the first occurance of the item to be removed. Then we make a copy of the basket in newBasket and then if the index that we get, is greater than 0, then we will use splice function of array, to just remove the item present at that index .splice(index, 1). So in this way items will be added and removed from the cart. 
+
+4) Login Page and Firebase for Authentication =>
+    i) Login page doesnot need to have header, and the required css and html were added to make it look just like the original amazon login page. Form for email and password is manitained by using hooks.
+    ii) Firebase is first intialized in the firebase.js file and the db and auth variable are added to access the database from firbase's firestore and Authentication features respectively.
+    iii) In the login page, There Are two parts, if the user is new, he needs to do the following:
+        a) If the user is new, then first he needs to Register and make a new account by clicking at the lower button. And this is done by the auth const that we made in firebase.js by using .createUserWithEmailAndPassword(email, password) function. Now this account is added in the firebase, so which means a account has been made with the particular email and password. After Logging in, the user will automatically be moved to the home page.
+        b) Now If an existing user wants to log in, then he needs to click at the Sign in button and he will be signed in. This is done by .signInWithEmailAndPassword(email, password) function of auth const. The user will be logged in only if the user has already made a account which is stored in the firebase. If there is no account or the password entered is wrong, it will show an error.
+    iv) When a user logs in, he pushed to the home page automatically by using history.push of the authentication is successful.
+    v) A useEffect is used to keep a track of the user by adding a listener, auth.onAuthStateChanged, which listens to the changes in the authenticated user when the page is loaded. Here we need to update the data layer with the info about the user and whether he is logged in or not, so in the useEffect or the listener, if the user is logged in, that is, if authUser is not empty, it means there is a user logged in, then we send a dispatch with action type "SET_USER" and and authUser in action.user. like wise if there is no authUser, same action type will be dispatched and for action.user, null will be dispatched.
+    vi) In reducer.js we add a case of "SET_USER" and add the new details.
+    vii) Now coming to header, We need to show who the user is, and if the user is logged in, we want to give him an option to sign out or else sign in. For this we can directly use our data layer, and extract user data to check if user is there or not, and if he is present, header will show an option Sign Out or else Sign in.
+    viii) If user is present, and he clicks on sign out, then it can be done by adding an onclick func on it, which will see if the user is present, it will signout by using auth.signOut() function of firebase. Now doing this the page will directly be directed to the login page automatically. We dont want that, so will put a condition on the link to login, that if there is user, then only the link will work, or else, we wont be directed directly to the login page. so when we logout, there is no user present in the user var of data layer, so it wont automatically be directed to login page.
+
+
+#TASKS NEED TO BE DONE AFTERWARDS
+1) css to Header links, css on being active.
+2) making navbar look exactly like indian amazon.
+3) Footer
+4) Change details of the product to make it look indian and reasonable
+5) Add more products 
+6) Responsiveness of checkout page, and other pages
