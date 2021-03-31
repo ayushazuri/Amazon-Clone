@@ -1,3 +1,5 @@
+Hosting URL: https://clone-d2903.web.app
+
 1) Nav bar => 
     i) Used Material UI for icons and flex box for styling
     ii) Navbar has position sticky
