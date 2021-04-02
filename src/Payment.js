@@ -7,6 +7,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from "./reducer";
 import axios from "./axios";
+import { db } from "./firebase";
 
 const Payment = () => {
 	const [{ basket, user }, dispatch] = useStateValue();
@@ -38,35 +39,58 @@ const Payment = () => {
 	console.log("THE SECRET IS >>>", clientSecret);
 	console.log("👱", user);
 
+	const create_UUID = () => {
+		var dt = new Date().getTime();
+		var uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+			/[xy]/g,
+			function (c) {
+				var r = (dt + Math.random() * 16) % 16 | 0;
+				dt = Math.floor(dt / 16);
+				return (c == "x" ? r : (r & 0x3) | 0x8).toString(16);
+			}
+		);
+		return uuid;
+	};
 	const handleSubmit = async (event) => {
 		// do all the fancy stripe stuff...
 		event.preventDefault();
 		// setProcessing(true);
 
-		// const payload = await stripe
-		// 	.confirmCardPayment(clientSecret, {
-		// 		payment_method: {
-		// 			card: elements.getElement(CardElement),
-		// 		},
-		// 	})
-		// 	.then(({ paymentIntent }) => {
-		// 		// paymentIntent = payment confirmation
+		// const payload = await stripe;
+		// .confirmCardPayment(clientSecret, {
+		// 	payment_method: {
+		// 		card: elements.getElement(CardElement),
+		// 	},
+		// })
+		// .then(({ paymentIntent }) => {
+		// 	// paymentIntent = payment confirmation
 
-		// 		setSucceeded(true);
-		// 		setError(null);
-		// 		setProcessing(false);
+		// 	setSucceeded(true);
+		// 	setError(null);
+		// 	setProcessing(false);
 
-		// 		dispatch({
-		// 			type: "EMPTY_BASKET",
-		// 		});
-
-		// 		history.replace("/orders");
+		// 	dispatch({
+		// 		type: "EMPTY_BASKET",
 		// 	});
+
+		// 	history.replace("/orders");
+		// });
 		//Not needed. Improv
 
 		dispatch({
 			type: "EMPTY_BASKET",
 		});
+
+		db.collection("user")
+			.doc(user?.uid)
+			.collection("orders")
+			.doc(create_UUID())
+			.set({
+				basket: basket,
+				amount: getBasketTotal(basket),
+				email: user?.email,
+			});
+
 		setSucceeded(true);
 		setError(null);
 		setProcessing(false);

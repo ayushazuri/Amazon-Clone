@@ -15,16 +15,23 @@ const Home = () => {
 					<Product
 						id="12321341"
 						title="The Lean Startup: How Constant Innovation Creates Radically Successful Businesses Paperback"
-						price={11.96}
+						price={200}
 						rating={5}
 						image="https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._SX325_BO1,204,203,200_.jpg"
 					/>
 					<Product
 						id="49538094"
 						title="Kenwood kMix Stand Mixer for Baking, Stylish Kitchen Mixer with K-beater, Dough Hook and Whisk, 5 Litre Glass Bowl"
-						price={239.0}
+						price={750.0}
 						rating={4}
 						image="https://images-na.ssl-images-amazon.com/images/I/81O%2BGNdkzKL._AC_SX450_.jpg"
+					/>
+					<Product
+						id="495312094"
+						title="Puma Unisex-Adult Mapm Drift Cat 5 Ultra Ii Sneakers"
+						price={4100}
+						rating={4}
+						image="https://images-na.ssl-images-amazon.com/images/I/71TdUr7wqPL._UL1500_.jpg"
 					/>
 				</div>
 
@@ -32,23 +39,16 @@ const Home = () => {
 					<Product
 						id="4903850"
 						title="Samsung LC49RG90SSUXEN 49' Curved LED Gaming Monitor"
-						price={199.99}
+						price={12490}
 						rating={3}
 						image="https://images-na.ssl-images-amazon.com/images/I/71Swqqe7XAL._AC_SX466_.jpg"
 					/>
 					<Product
 						id="23445930"
 						title="Amazon Echo (3rd generation) | Smart speaker with Alexa, Charcoal Fabric"
-						price={98.99}
+						price={3500}
 						rating={5}
 						image="https://media.very.co.uk/i/very/P6LTG_SQ1_0000000071_CHARCOAL_SLf?$300x400_retinamobilex2$"
-					/>
-					<Product
-						id="3254354345"
-						title="New Apple iPad Pro (12.9-inch, Wi-Fi, 128GB) - Silver (4th Generation)"
-						price={598.99}
-						rating={4}
-						image="https://images-na.ssl-images-amazon.com/images/I/816ctt5WV5L._AC_SX385_.jpg"
 					/>
 				</div>
 
@@ -56,9 +56,32 @@ const Home = () => {
 					<Product
 						id="90829332"
 						title="Samsung LC49RG90SSUXEN 49' Curved LED Gaming Monitor - Super Ultra Wide Dual WQHD 5120 x 1440"
-						price={1094.98}
+						price={35930}
 						rating={4}
 						image="https://images-na.ssl-images-amazon.com/images/I/6125mFrzr6L._AC_SX355_.jpg"
+					/>
+				</div>
+				<div className="home__row">
+					<Product
+						id="3254354345"
+						title="New Apple iPad Pro (12.9-inch, Wi-Fi, 128GB) - Silver (4th Generation)"
+						price={70000}
+						rating={4}
+						image="https://images-na.ssl-images-amazon.com/images/I/816ctt5WV5L._AC_SX385_.jpg"
+					/>
+					<Product
+						id="3251354345"
+						title="Optimum Nutrition (ON) Gold Standard 100% Whey Protein Powder - 2 lbs, 907 g (Double Rich Chocolate), Primary Source Isolate"
+						price={2589}
+						rating={4}
+						image="https://images-na.ssl-images-amazon.com/images/I/716uIeq4rfL._SL1500_.jpg"
+					/>
+					<Product
+						id="2751354345"
+						title="New Apple MacBook Air with Apple M1 Chip (13-inch, 8GB RAM, 256GB SSD) - Space Grey (Latest Model)"
+						price={92900}
+						rating={5}
+						image="https://images-na.ssl-images-amazon.com/images/I/71jG%2Be7roXL._SL1500_.jpg"
 					/>
 				</div>
 			</div>

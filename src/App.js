@@ -11,6 +11,8 @@ import Payment from "./Payment.js";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Orders from "./Orders";
+import NotAvailable from "./NotAvailable";
+import Footer from "./components/Footer";
 
 const promise = loadStripe(
 	"pk_test_51IaFqGSBS3td2NV9p4FvsY9MSxP5W1livyNKfAV6WMEUH4I6rzsMKCmXrWRJMJ7rumlhHSJniSav9lBsr7k48zR900CPmFSbBg"
@@ -18,17 +20,22 @@ const promise = loadStripe(
 
 function App() {
 	const [{}, dispatch] = useStateValue();
+
 	useEffect(() => {
+		// will only run once when the app component loads...
+
 		auth.onAuthStateChanged((authUser) => {
-			console.log("The user iss => ", authUser);
+			console.log("THE USER IS >>> ", authUser);
+
 			if (authUser) {
-				//Logged in
+				// the user just logged in / the user was logged in
+
 				dispatch({
 					type: "SET_USER",
 					user: authUser,
 				});
 			} else {
-				//Logged Out
+				// the user is logged out
 				dispatch({
 					type: "SET_USER",
 					user: null,
@@ -47,20 +54,29 @@ function App() {
 					<Route path="/checkout">
 						<Header />
 						<Checkout />
+						<Footer />
 					</Route>
 					<Route path="/orders">
 						<Header />
 						<Orders />
+						<Footer />
 					</Route>
 					<Route path="/payment">
 						<Header />
 						<Elements stripe={promise}>
 							<Payment />
 						</Elements>
+						<Footer />
+					</Route>
+					<Route path="/notavailable">
+						<Header />
+						<NotAvailable />
+						<Footer />
 					</Route>
 					<Route path="/">
 						<Header />
 						<Home />
+						<Footer />
 					</Route>
 				</Switch>
 			</div>

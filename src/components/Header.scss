@@ -32,6 +32,12 @@
 		padding: 10px;
 		border: none;
 		width: 100%;
+		&:focus {
+			border: 1px solid #cd9042;
+		}
+		&:hover {
+			border: 1px solid #cd9042;
+		}
 	}
 
 	&__nav {
@@ -46,11 +52,12 @@
 		margin-right: 10px;
 	}
 	&__option1 {
-		font-size: 10px;
+		font-size: 11px;
 	}
 	&__option2 {
-		font-size: 13px;
+		font-size: 15px;
 		font-weight: 800;
+		color: #cd9042;
 	}
 	&__optionBasket {
 		display: flex;
@@ -59,5 +66,13 @@
 	}
 	&__basketCount {
 		margin: 0 10px 0 10px;
+		font-size: 18px;
+	}
+	.tab {
+		padding: 5px;
+		border-radius: 5px;
+	}
+	.tab:hover {
+		border: 1px solid white;
 	}
 }

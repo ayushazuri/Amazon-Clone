@@ -28,7 +28,7 @@ const Header = () => {
 			</div>
 			<div className="header__nav">
 				<Link className="link" to={!state.user && "/login"}>
-					<div onClick={handleAuthentication} className="header__option">
+					<div onClick={handleAuthentication} className="header__option tab">
 						<span className="header__option1">
 							Hello{" "}
 							{state.user?.email !== undefined ? state.user?.email : "Guest"}
@@ -38,16 +38,20 @@ const Header = () => {
 						</span>
 					</div>
 				</Link>
-				<div className="header__option">
-					<span className="header__option1">Return</span>
-					<span className="header__option2">& orders</span>
-				</div>
-				<div className="header__option">
-					<span className="header__option1">Your</span>
-					<span className="header__option2">Prime</span>
-				</div>
+				<Link to="/orders">
+					<div className="header__option tab">
+						<span className="header__option1">Return</span>
+						<span className="header__option2">& orders</span>
+					</div>
+				</Link>
+				<Link to="/notavailable">
+					<div className="header__option tab">
+						<span className="header__option1">Your</span>
+						<span className="header__option2">Prime</span>
+					</div>
+				</Link>
 				<Link className="link" to="/checkout">
-					<div className="header__optionBasket">
+					<div className="header__optionBasket tab">
 						<ShoppingCartIcon />
 						<span className="header__option2 header__basketCount">
 							{state.basket?.length}
