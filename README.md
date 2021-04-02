@@ -1,5 +1,8 @@
 # Getting Started with Create React App
 
+Amazon Cloned using ReactJS and Firebase. Authentication, Database, and Deployement has been done with tha help of Firebase. Functionalities like, Logging in using your account, Adding you desired items to the cart and buying it, etc are added in this cloned version of Amazon.
+Hosted URL: https://clone-d2903.web.app
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
